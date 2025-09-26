@@ -3,7 +3,7 @@ import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { type User } from '@/types';
 import { Link, router } from '@inertiajs/react';
-import { LogOut } from 'lucide-react';
+import { LogOut, Settings } from 'lucide-react';
 
 interface UserMenuContentProps {
     user: User;
@@ -23,6 +23,14 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                     <UserInfo user={user} showEmail={true} />
                 </div>
+            </DropdownMenuLabel>
+            <DropdownMenuLabel className="p-0 font-normal">
+                <Link href={'/settings'}>
+                    <div className="flex items-center gap-2 px-1 py-1.5 text-sm">
+                        <Settings className="h-8 w-8"></Settings>
+                        <p>Settings</p>
+                    </div>
+                </Link>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>

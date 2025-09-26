@@ -19,7 +19,6 @@ interface LoginProps {
 export default function Login({ status, canResetPassword }: LoginProps) {
     // fungsi show/hide password
     const [show, setShow] = useState(false);
-
     return (
         <AuthLayout title="Log in to your account" description="Enter your email and password below to log in">
             <Head title="Log in" />

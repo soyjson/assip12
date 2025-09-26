@@ -15,6 +15,11 @@ export interface NavGroup {
     items: NavItem[];
 }
 
+export interface NavList {
+    title: string;
+    item: NavItem[];
+}
+
 export interface NavItem {
     title: string;
     href: NonNullable<InertiaLinkProps['href']>;
@@ -39,4 +44,12 @@ export interface User {
     created_at: string;
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
+}
+
+export interface DataBerita extends SharedData {
+    gg: string;
+}
+
+export interface DataUser extends SharedData {
+    role: string;
 }

@@ -3,7 +3,8 @@ import { type SharedData } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 
 export default function Home() {
-    const { auth } = usePage<SharedData>().props;
+    const { gg } = usePage<SharedData>().props;
+    console.log(gg);
 
     return (
         <AppLayout>

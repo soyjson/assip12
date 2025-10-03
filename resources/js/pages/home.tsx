@@ -1,14 +1,38 @@
 import AppLayout from '@/layouts/app-layout';
-import { type SharedData } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 export default function Home() {
-    const { gg } = usePage<SharedData>().props;
-    console.log(gg);
+    // const { gg } = usePage<SharedData>().props;
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     formState: { errors, isSubmitting },
+    //     reset,
+    // } = useForm({ mode: 'onChange' });
+
+    // const [preview, setPreview] = useState(null);
+
+    // const onSubmit = async (data) => {
+    //     // kirim via inertia
+    //     // router.post('/register', data, {
+    //     //     onSuccess: () => reset(),
+    //     // });
+    //     console.log(data);
+    // };
+
+    // const handleFotoChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onload = (ev) => setPreview(ev.target.result);
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
 
     return (
         <AppLayout>
             <Head title="A S I P P" />
+
             <div className="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]">
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                     <main className="flex w-full max-w-[335px] flex-col-reverse lg:max-w-4xl lg:flex-row">
@@ -760,4 +784,204 @@ export default function Home() {
             </div>
         </AppLayout>
     );
+}
+
+{
+    /* <div>
+                <div
+                    className="p-5 pt-30"
+                    style={{
+                        backgroundImage: 'url(/assets/image/body/4117072.jpg)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                >
+                    <div className="flex h-full items-center justify-center bg-black/40">
+                        <h1 className="text-3xl font-bold text-white">Pendaftaran Akun</h1>
+                    </div>
+                </div>
+
+                <div className="mx-auto mt-6 max-w-5xl rounded-xl bg-white p-6 shadow">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" encType="multipart/form-data">
+                        <div className="grid gap-6 md:grid-cols-2">
+                        
+                            <div>
+                                <h4 className="mb-4 text-lg font-semibold">Informasi Saya</h4>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Nama dan Gelar*</label>
+                                    <Input
+                                        type="text"
+                                        {...register('name', { required: 'Nama wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                    />
+                                    {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="mb-4">
+                                        <label className="block text-sm font-medium">NIDN*</label>
+                                        <Input
+                                            type="number"
+                                            {...register('nidn', { required: 'NIDN wajib diisi' })}
+                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                        />
+                                        {errors.nidn && <p className="text-xs text-red-500">{errors.nidn.message}</p>}
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block text-sm font-medium">NIK*</label>
+                                        <Input
+                                            type="number"
+                                            {...register('nik', { required: 'NIK wajib diisi' })}
+                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                        />
+                                        {errors.nik && <p className="text-xs text-red-500">{errors.nik.message}</p>}
+                                    </div>
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Jabatan Fungsional</label>
+                                    <Input type="text" {...register('jafung')} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Institusi*</label>
+                                    <Input
+                                        type="text"
+                                        {...register('institusi', { required: 'Institusi wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.institusi && <p className="text-xs text-red-500">{errors.institusi.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Fakultas*</label>
+                                    <Input
+                                        type="text"
+                                        {...register('fakultas', { required: 'Fakultas wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.fakultas && <p className="text-xs text-red-500">{errors.fakultas.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Program Studi*</label>
+                                    <Input
+                                        type="text"
+                                        {...register('program_studi', { required: 'Program Studi wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.program_studi && <p className="text-xs text-red-500">{errors.program_studi.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">
+                                        Foto* <span className="text-xs text-red-500">JPG/PNG Maks. 2MB</span>
+                                    </label>
+                                    <Input
+                                        type="file"
+                                        accept="image/*"
+                                        {...register('foto', { required: 'Foto wajib diupload' })}
+                                        onChange={handleFotoChange}
+                                        className="mt-1 block w-full text-sm text-gray-500 file:mr-3 file:rounded-md file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+                                    />
+                                    {errors.foto && <p className="text-xs text-red-500">{errors.foto.message}</p>}
+                                    {preview && <img src={preview} alt="preview" className="mt-2 h-24 w-24 rounded object-cover" />}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 className="mb-4 text-lg font-semibold">Informasi Akun</h4>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">E-mail*</label>
+                                    <Input
+                                        type="email"
+                                        {...register('email', { required: 'Email wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.email && <p className="text-xs text-red-500">{errors.email.message?.toString()}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Nomor HP*</label>
+                                    <Input
+                                        type="number"
+                                        {...register('no_handphone', { required: 'Nomor HP wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.no_handphone && <p className="text-xs text-red-500">{errors.no_handphone.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Akses*</label>
+                                    <select
+                                        {...register('level', { required: 'Pilih level akses' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    >
+                                        <option value="">-- Pilih --</option>
+                                        <option value="4">Dosen</option>
+                                        <option value="5">Reviewer</option>
+                                    </select>
+                                    {errors.level && <p className="text-xs text-red-500">{errors.level.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Username*</label>
+                                    <Input
+                                        type="text"
+                                        {...register('username', { required: 'Username wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.username && <p className="text-xs text-red-500">{errors.username.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Password*</label>
+                                    <Input
+                                        type="password"
+                                        {...register('password', { required: 'Password wajib diisi' })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.password && <p className="text-xs text-red-500">{errors.password.message}</p>}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Password Ulangi*</label>
+                                    <Input
+                                        type="password"
+                                        {...register('password_confirmation', {
+                                            required: 'Konfirmasi password wajib diisi',
+                                        })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                    />
+                                    {errors.password_confirmation && <p className="text-xs text-red-500">{errors.password_confirmation.message}</p>}
+                                </div>
+
+                                <p className="text-xs text-gray-500">ℹ️ Daftarkan dengan alamat email valid. Buat password yang aman.</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-6">
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+                            >
+                                {isSubmitting ? 'Loading...' : 'Daftar'}
+                            </button>
+                        </div>
+                        <p className="mt-2 text-center text-xs text-gray-600">
+                            Dengan melakukan pendaftaran, saya setuju dengan{' '}
+                            <a href="#" className="underline">
+                                Kebijakan Privasi
+                            </a>{' '}
+                            dan{' '}
+                            <a href="#" className="underline">
+                                Syarat & Ketentuan
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div> */
 }

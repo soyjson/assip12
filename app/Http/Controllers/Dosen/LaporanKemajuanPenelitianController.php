@@ -6,34 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class DashboardController extends Controller
+class LaporanKemajuanPenelitianController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
-        return dd($user);
-
-        // Cek Role dan kembalikan view yang sesuai
-        if ($user->hasRole('admin')) {
-            Inertia::render("Dashboard/DashboardAdmin", [
-                "role" => "admin"
-            ]);
-        }
-
-        if ($user->hasRole('dosen')) {
-            Inertia::render("Dashboard/DashboardDosen", [
-                "role" => "dosen"
-            ]);
-        }
-
-        if ($user->hasRole('reviewer')) {
-            Inertia::render("Dashboard/DashboardReviewer", [
-                "role" => "reviewer"
-            ]);
-        }
+        return Inertia::render("dosen/LaporanKemajuanPenelitian", [
+            "role" => "dosen"
+        ]);
     }
 
     /**

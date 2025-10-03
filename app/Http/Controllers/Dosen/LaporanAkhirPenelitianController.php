@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class LaporanPengabdianController extends Controller
+class LaporanAkhirPenelitianController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render("dosen/LaporanPengabmas", [
+        return Inertia::render("dosen/LaporanAkhirPenelitian", [
             "role" => "dosen"
         ]);
     }

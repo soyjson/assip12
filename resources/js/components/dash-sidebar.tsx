@@ -1,10 +1,9 @@
-import { NavFooter } from '@/components/dash-nav-footer';
 import { NavMain } from '@/components/dash-nav-main';
-import { NavUser } from '@/components/dash-nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { DataUser, NavList, type NavItem } from '@/types';
+import { DataUser, NavList } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, ClipboardPen, Folder, LayoutGrid, ListTodoIcon, SquarePen, Upload, Users } from 'lucide-react';
+import { ClipboardPen, LayoutGrid, ListTodoIcon, SquarePen, Upload, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import DashLogo from './dash-logo';
 
 const allNavItems: { [key: string]: NavList[] } = {
@@ -19,7 +18,7 @@ const allNavItems: { [key: string]: NavList[] } = {
             item: [{ title: 'Data Dosen', href: '/dosen/data-dosen', icon: Users }],
         },
         {
-            title: 'Upload Usulan',
+            title: 'UPLOAD USULAN',
             item: [
                 { title: 'Usulan Penelitian', href: '/dosen/usulan-penelitian', icon: Upload },
                 { title: 'Usulan Pengabmas', href: '/dosen/usulan-pengabmas', icon: Upload },
@@ -28,8 +27,24 @@ const allNavItems: { [key: string]: NavList[] } = {
         {
             title: 'LAPORAN',
             item: [
-                { title: 'Laporan Penelitian', href: '/dosen/laporan-penelitian', icon: ClipboardPen },
-                { title: 'Laporan Pengabmas', href: '/dosen/laporan-pengabmas', icon: ClipboardPen },
+                {
+                    title: 'Laporan Penelitian',
+                    href: '/dosen/laporan-penelitian',
+                    icon: ClipboardPen,
+                    children: [
+                        { title: 'Laporan Kemajuan', href: '/dosen/laporan-penelitian/laporan-kemajuan', icon: Upload },
+                        { title: 'Laporan Akhir', href: '/dosen/laporan-penelitian/laporan-akhir', icon: Upload },
+                    ],
+                },
+                {
+                    title: 'Laporan Pengabmas',
+                    href: '/dosen/laporan-pengabmas',
+                    icon: ClipboardPen,
+                    children: [
+                        { title: 'Laporan Kemajuan', href: '/dosen/laporan-pengabmas/laporan-kemajuan', icon: Upload },
+                        { title: 'Laporan Akhir', href: '/dosen/laporan-pengabmas/laporan-akhir', icon: Upload },
+                    ],
+                },
                 { title: 'Hasil Review', href: '/dosen/review', icon: ListTodoIcon },
             ],
         },
@@ -59,22 +74,27 @@ const allNavItems: { [key: string]: NavList[] } = {
     ],
 };
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Resource',
-        href: '#',
-        icon: Folder,
-    },
-    {
-        title: 'Report',
-        href: '/admin/report',
-        icon: BookOpen,
-    },
-];
-
 export function DashSidebar() {
     const { role } = usePage<DataUser>().props;
     console.log(role);
+
+    const [now, setNow] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setNow(new Date());
+        }, 60_000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    const formatted = now.toLocaleDateString('id-ID', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    });
+    const display = formatted.charAt(0).toUpperCase() + formatted.slice(1);
 
     return (
         <Sidebar collapsible="icon" variant="inset">
@@ -95,8 +115,11 @@ export function DashSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
-                <NavUser />
+                {/* <NavFooter items={footerNavItems} className="mt-auto" /> */}
+                {/* <NavUser /> */}
+                <div className="hidden rounded-lg bg-slate-100 p-3 text-center text-sm font-normal shadow group-data-[collapsible=icon]:pointer-events-none group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:select-none md:block">
+                    {display}
+                </div>
             </SidebarFooter>
         </Sidebar>
     );

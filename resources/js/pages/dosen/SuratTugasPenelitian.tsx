@@ -1,5 +1,4 @@
-import FormSuratTugasPenelitian from '@/components/FormSuratTugasPenelitian';
-import InputLogbook from '@/components/InputLogbook';
+import Logbook from '@/components/Logbook';
 import DashLayout from '@/layouts/dash-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -11,12 +10,12 @@ const breadcrumbs: BreadcrumbItem[] = [
     //     href: '-',
     // },
     {
-        title: 'Logbook Penelitian',
-        href: '/dosen/logbook-penelitian',
+        title: 'Logbook Pengabmas',
+        href: '/dosen/logbook-pengabmas',
     },
 ];
 
-export default function LogBookPenelitian() {
+export default function SuratTugasPenelitian() {
     const [activeTab, setActiveTab] = useState('input');
 
     const tabs = [
@@ -26,7 +25,7 @@ export default function LogBookPenelitian() {
 
     return (
         <DashLayout breadcrumbs={breadcrumbs}>
-            <Head title="ASIPP | Logbook Penelitian" />
+            <Head title="ASIPP | Logbook Pengabmas" />
             <div className="rounded-lg bg-white p-6 shadow">
                 {/* Tab Bar */}
                 <div className="flex border-b">
@@ -45,10 +44,8 @@ export default function LogBookPenelitian() {
 
                 {/* Isi Tab */}
                 <div className="rounded-b border bg-white p-4">
-                    {activeTab === 'input' && <InputLogbook title="Penelitian"></InputLogbook>}
-                    {/* {activeTab === 'logbook' && <Logbook title="Penelitian"></Logbook>} */}
-                    {activeTab === 'logbook' && <FormSuratTugasPenelitian></FormSuratTugasPenelitian>}
-                    {/* {activeTab === 'logbook' && <DataSuratTugas title="penelitian"></DataSuratTugas>} */}
+                    {activeTab === 'input' && <SuratTugasPenelitian></SuratTugasPenelitian>}
+                    {activeTab === 'logbook' && <Logbook title="Pengabmas"></Logbook>}
                 </div>
             </div>
         </DashLayout>

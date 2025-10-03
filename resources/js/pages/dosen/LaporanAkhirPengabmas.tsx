@@ -1,5 +1,5 @@
-import FormSuratTugasPenelitian from '@/components/FormSuratTugasPenelitian';
-import InputLogbook from '@/components/InputLogbook';
+import DataLaporanAkhirPengabmas from '@/components/DataLaporanAkhirPengabmas';
+import UploadLaporanAkhirPengabmas from '@/components/UploadLaporanAkhirPengabmas';
 import DashLayout from '@/layouts/dash-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -11,22 +11,22 @@ const breadcrumbs: BreadcrumbItem[] = [
     //     href: '-',
     // },
     {
-        title: 'Logbook Penelitian',
-        href: '/dosen/logbook-penelitian',
+        title: 'Laporan Akhir',
+        href: '/dosen/laporan-pengabmas/laporan-akhir',
     },
 ];
 
-export default function LogBookPenelitian() {
-    const [activeTab, setActiveTab] = useState('input');
+export default function LaporanAkhirPengabmas() {
+    const [activeTab, setActiveTab] = useState('upload');
 
     const tabs = [
-        { id: 'input', label: 'Input Logbook' },
-        { id: 'logbook', label: 'Logbook' },
+        { id: 'upload', label: 'Upload Laporan Akhir Pengabmas' },
+        { id: 'data', label: 'Data Laporan Akhir' },
     ];
 
     return (
         <DashLayout breadcrumbs={breadcrumbs}>
-            <Head title="ASIPP | Logbook Penelitian" />
+            <Head title="ASIPP | Laporan Akhir Pengabmas" />
             <div className="rounded-lg bg-white p-6 shadow">
                 {/* Tab Bar */}
                 <div className="flex border-b">
@@ -45,10 +45,8 @@ export default function LogBookPenelitian() {
 
                 {/* Isi Tab */}
                 <div className="rounded-b border bg-white p-4">
-                    {activeTab === 'input' && <InputLogbook title="Penelitian"></InputLogbook>}
-                    {/* {activeTab === 'logbook' && <Logbook title="Penelitian"></Logbook>} */}
-                    {activeTab === 'logbook' && <FormSuratTugasPenelitian></FormSuratTugasPenelitian>}
-                    {/* {activeTab === 'logbook' && <DataSuratTugas title="penelitian"></DataSuratTugas>} */}
+                    {activeTab === 'upload' && <UploadLaporanAkhirPengabmas></UploadLaporanAkhirPengabmas>}
+                    {activeTab === 'data' && <DataLaporanAkhirPengabmas></DataLaporanAkhirPengabmas>}
                 </div>
             </div>
         </DashLayout>

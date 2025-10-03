@@ -11,10 +11,17 @@ class LogbookPenelitianController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+        $page_size = $request->input('pageSize');
+
+
+
         return Inertia::render("dosen/LogBookPenelitian", [
-            "role" => "dosen"
+            "role" => "dosen",
+            "query" => $search,
+            "entries" => $page_size
         ]);
     }
 

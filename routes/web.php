@@ -2,15 +2,15 @@
 
 use App\Http\Controllers\Dosen\DashboardController;
 use App\Http\Controllers\Dosen\DataDosenController;
-use App\Http\Controllers\Dosen\LaporanPenelitianController;
-use App\Http\Controllers\Dosen\LaporanPengabdianController;
+use App\Http\Controllers\Dosen\LaporanAkhirPenelitianController;
+use App\Http\Controllers\Dosen\LaporanAkhirPengabmasController;
+use App\Http\Controllers\Dosen\LaporanKemajuanPenelitianController;
+use App\Http\Controllers\Dosen\LaporanKemajuanPengabmasController;
 use App\Http\Controllers\Dosen\LogbookPenelitianController;
 use App\Http\Controllers\Dosen\LogbookPengabdianController;
 use App\Http\Controllers\Dosen\ReviewController;
 use App\Http\Controllers\Dosen\UsulanPenelitianController;
 use App\Http\Controllers\Dosen\UsulanPengabdianController;
-use App\Http\Controllers\DosenController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -25,8 +25,24 @@ Route::middleware(['auth', 'verified'])->prefix('dosen')->group(function () {
     Route::resource('data-dosen', DataDosenController::class)->only(['index', 'store', 'update']);
     Route::resource('usulan-penelitian', UsulanPenelitianController::class);
     Route::resource('usulan-pengabmas', UsulanPengabdianController::class);
-    Route::resource('laporan-penelitian', LaporanPenelitianController::class);
-    Route::resource('laporan-pengabmas', LaporanPengabdianController::class);
+    // Route::resource('laporan-penelitian/laporan-kemajuan', LaporanKemajuanPenelitianController::class);
+    // Route::resource('laporan-penelitian/laporan-akhir', LaporanAkhirPenelitianController::class);
+    // Route::resource('laporan-pengabmas/laporan-kemajuan', LaporanKemajuanPengabmasController::class);
+    // Route::resource('laporan-pengabmas/laporan-akhir', LaporanAkhirPengabmasController::class);
+    Route::prefix('laporan-penelitian')->group(function () {
+        Route::resource('laporan-kemajuan', LaporanKemajuanPenelitianController::class)
+            ->names('laporanPenelitian.kemajuan');
+
+        Route::resource('laporan-akhir', LaporanAkhirPenelitianController::class)
+            ->names('laporanPenelitian.akhir');
+    });
+    Route::prefix('laporan-pengabmas')->group(function () {
+        Route::resource('laporan-kemajuan', LaporanKemajuanPengabmasController::class)
+            ->names('laporanPengabmas.kemajuan');
+
+        Route::resource('laporan-akhir', LaporanAkhirPengabmasController::class)
+            ->names('laporanPengabmas.akhir');
+    });
     Route::resource('logbook-penelitian', LogbookPenelitianController::class);
     Route::resource('logbook-pengabmas', LogbookPengabdianController::class);
     Route::resource('review', ReviewController::class)->only(['index', 'show']);

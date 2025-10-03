@@ -9,7 +9,7 @@ export default function DashSidebarLayout({ children, breadcrumbs = [] }: PropsW
     return (
         <DashShell variant="sidebar">
             <DashSidebar />
-            <DashContent>
+            <DashContent variant="sidebar">
                 <DashSidebarHeader breadcrumbs={breadcrumbs} />
                 {children}
             </DashContent>

@@ -16,7 +16,7 @@ export function DashShell({ children, variant = 'header' }: AppShellProps) {
 
     return (
         <SidebarProvider defaultOpen={isOpen}>
-            <div className="hidden h-screen w-full bg-[#f0f0f0] antialiased blur-none min-lg:flex dark:bg-[#0a0a0a]">{children}</div>
+            <div className="hidden h-full w-full bg-[#f0f0f0] antialiased blur-none min-lg:flex dark:bg-[#0a0a0a]">{children}</div>
             <div className="block min-h-screen w-full content-center justify-center bg-[#f0f0f0] p-10 antialiased blur-none min-lg:hidden dark:bg-[#0a0a0a]">
                 <p className="text-center text-sm text-black dark:text-white">Dashboard hanya dapat diakses dengan layar desktop.</p>
             </div>

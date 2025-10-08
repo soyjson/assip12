@@ -1,12 +1,12 @@
 import DashLayout from '@/layouts/dash-layout';
-import { dashboard } from '@/routes';
+import { dashboardDosen } from '@/routes';
 import { BreadcrumbItem, DataUser } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard Dosen',
-        href: dashboard().url,
+        href: dashboardDosen().url,
     },
 ];
 

@@ -1,9 +1,9 @@
-import { dashboard, login, register } from '@/routes';
+import { login } from '@/routes';
 import { type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 
 export default function AppHeader() {
-    const { auth } = usePage<SharedData>().props;
+    const { auth, role } = usePage<SharedData>().props;
 
     return (
         <header className="fixed z-50 flex w-full justify-center bg-[#FDFDFC]">
@@ -36,7 +36,7 @@ export default function AppHeader() {
 
                     {auth.user ? (
                         <Link
-                            href={dashboard()}
+                            href={`/${role}/dashboard`}
                             className="inline-block rounded-sm bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:bg-[#191501b1] dark:bg-[#1b1b18] dark:text-white dark:hover:bg-[#191501b1]"
                         >
                             Dashboard
@@ -45,15 +45,9 @@ export default function AppHeader() {
                         <div className="hidden items-center justify-end gap-4 min-lg:flex">
                             <Link
                                 href={login()}
-                                className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#191501b1] dark:border-[#19140035] dark:text-[#1b1b18] dark:hover:border-[#191501b1]"
-                            >
-                                Masuk
-                            </Link>
-                            <Link
-                                href={register()}
                                 className="inline-block rounded-sm bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:bg-[#191501b1] dark:bg-[#1b1b18] dark:text-white dark:hover:bg-[#191501b1]"
                             >
-                                Daftar
+                                Masuk
                             </Link>
                         </div>
                     )}

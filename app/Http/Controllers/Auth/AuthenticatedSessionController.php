@@ -29,11 +29,29 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Autentikasi dan regenerate session
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = $request->user();
+        if (! $user) {
+            return redirect()->route('login');
+        }
+
+        // mapping level => route name
+        $routes = [
+            'admin'     => 'dashboardAdmin',
+            'pimpinan'  => 'dashboardPimpinan',
+            'operator'  => 'dashboardOperator',
+            'dosen'     => 'dashboardDosen',
+            'reviewer'  => 'dashboardReviewer',
+        ];
+
+        $level = strtolower(trim((string) ($user->level ?? '')));
+        $routeName = $routes[$level] ?? 'dashboard';
+
+        // redirect ke intended (jika ada), kalau tidak ada fallback ke route yang sesuai
+        return redirect()->intended(route($routeName));
     }
 
     /**

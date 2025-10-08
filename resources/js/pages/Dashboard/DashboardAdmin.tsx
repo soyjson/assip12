@@ -1,6 +1,6 @@
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import DashLayout from '@/layouts/dash-layout';
-import { dashboard } from '@/routes';
+import { dashboardAdmin } from '@/routes';
 import { BreadcrumbItem, DataUser } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 import { Bookmark, Check } from 'lucide-react';
@@ -39,7 +39,7 @@ const chartConfig = {
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard Dosen',
-        href: dashboard().url,
+        href: dashboardAdmin().url,
     },
 ];
 

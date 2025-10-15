@@ -2,7 +2,24 @@ import { NavMain } from '@/components/dash-nav-main';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { DataUser, NavList } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { ClipboardPen, LayoutGrid, ListTodoIcon, SquarePen, Upload, Users } from 'lucide-react';
+import {
+    Blocks,
+    ClipboardPen,
+    Download,
+    FileCheck,
+    Forward,
+    LayoutGrid,
+    ListTodoIcon,
+    Mail,
+    Mails,
+    MessageCircleQuestion,
+    Newspaper,
+    ScrollText,
+    SquarePen,
+    Upload,
+    Users,
+    Wrench,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import DashLogo from './dash-logo';
 
@@ -64,13 +81,115 @@ const allNavItems: { [key: string]: NavList[] } = {
     ],
     // Area ini untuk role ADMIN, berdasarkan hak akses di panduan ASIPP
     admin: [
-        //TODO
-        // ... (Isi item navigasi Admin di sini)
+        {
+            title: 'DASHBOARD',
+            item: [{ title: 'Dashboard', href: '/admin/dashboard', icon: LayoutGrid }],
+        },
+        // 2. DOSEN
+        {
+            title: 'DOSEN',
+            item: [{ title: 'Data Dosen', href: '/admin/data-dosen', icon: Users }],
+        },
+        // 3. REVIEWER (Kategori Baru)
+        {
+            title: 'REVIEWER',
+            item: [
+                { title: 'Data Reviewer', href: '/admin/data-reviewer', icon: Users },
+                {
+                    title: 'Plot Reviewer',
+                    href: '/admin/plot-reviewer',
+                    icon: Forward,
+                    children: [
+                        { title: 'Plot Reviewer Usulan', href: '/admin/plot-reviewer/usulan', icon: Blocks },
+                        { title: 'Plot Reviewer Kemajuan', href: '/admin/plot-reviewer/kemajuan', icon: Blocks },
+                        { title: 'Plot Reviewer Akhir', href: '/admin/plot-reviewer/akhir', icon: Blocks },
+                    ],
+                },
+                { title: 'Hasil Review', href: '/admin/hasil-review', icon: ListTodoIcon },
+            ],
+        },
+        // 4. LAPORAN (Kategori Baru)
+        {
+            title: 'LAPORAN',
+            item: [
+                {
+                    title: 'Laporan Penelitian',
+                    href: '/admin/laporan-penelitian',
+                    icon: ClipboardPen,
+                    children: [
+                        { title: 'Konfirmasi Usulan Baru', href: '/admin/laporan-penelitian/konfirmasi-usulan', icon: FileCheck },
+                        { title: 'Konfirmasi Laporan Kemajuan', href: '/admin/laporan-penelitian/konfirmasi-kemajuan', icon: FileCheck },
+                        { title: 'Konfirmasi Laporan Akhir', href: '/admin/laporan-penelitian/konfirmasi-akhir', icon: FileCheck },
+                    ],
+                },
+                {
+                    title: 'Laporan Pengabmas',
+                    href: '/admin/laporan-pengabmas',
+                    icon: FileCheck,
+                    children: [
+                        { title: 'Konfirmasi Usulan Baru', href: '/admin/laporan-pengabmas/konfirmasi-usulan', icon: FileCheck },
+                        { title: 'Konfirmasi Laporan Kemajuan', href: '/admin/laporan-pengabmas/konfirmasi-kemajuan', icon: FileCheck },
+                        { title: 'Konfirmasi Laporan Akhir', href: '/admin/laporan-pengabmas/konfirmasi-akhir', icon: FileCheck },
+                    ],
+                },
+                {
+                    title: 'Surat Tugas',
+                    href: '/admin/surat-tugas',
+                    icon: Mails,
+                    children: [
+                        { title: 'Surat Tugas Penelitian', href: '/admin/surat-tugas/penelitian', icon: Mail },
+                        { title: 'Surat Tugas Pengabmas', href: '/admin/surat-tugas/pengabmas', icon: Mail },
+                    ],
+                },
+            ],
+        },
+        {
+            title: 'PENGATURAN',
+            item: [
+                {
+                    title: 'Data Users',
+                    href: '/admin/data-users',
+                    icon: ClipboardPen,
+                },
+                {
+                    title: 'Pengaturan',
+                    href: '/admin/pengaturan',
+                    icon: Wrench,
+                },
+                {
+                    title: 'Berita',
+                    href: '/admin/berita',
+                    icon: Newspaper,
+                },
+                {
+                    title: 'Bantuan',
+                    href: '/admin/bantuan',
+                    icon: MessageCircleQuestion,
+                },
+                {
+                    title: 'Unduhan',
+                    href: '/admin/unduhan',
+                    icon: Download,
+                },
+                {
+                    title: 'Log Akses',
+                    href: '/admin/log-akses',
+                    icon: ScrollText,
+                },
+            ],
+        },
     ],
     // Area ini untuk role REVIEWER
     reviewer: [
-        //TODO
-        // ... (Isi item navigasi Reviewer di sini)
+        {
+            title: 'DASHBOARD',
+            item: [
+                { title: 'Dashboard', href: '/reviewer/dashboard', icon: LayoutGrid },
+                { title: 'Review Usulan', href: '/reviewer/usulan', icon: Forward },
+                { title: 'Review Laporan Kemajuan', href: '/reviewer/laporan-kemajuan', icon: Forward },
+                { title: 'Review Laporan Akhir', href: '/reviewer/laporan-akhir', icon: Forward },
+            ],
+        },
     ],
 };
 

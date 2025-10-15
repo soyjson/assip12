@@ -1,4 +1,6 @@
-import Table from '@/components/Table';
+// import Table from '@/components/Table';
+// import Table from '@/components/table';
+import Table from '@/components/table';
 import { Button } from '@/components/ui/button';
 import useDataTablePagination from '@/hooks/usePaginationState';
 import DashLayout from '@/layouts/dash-layout';

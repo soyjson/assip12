@@ -3,7 +3,6 @@ import DashLayout from '@/layouts/dash-layout';
 import { dashboardReviewer } from '@/routes';
 import { BreadcrumbItem, DataUser } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
-import { Bookmark, Check } from 'lucide-react';
 import { useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
@@ -79,7 +78,7 @@ export default function DashboardReviewer() {
             <Head title={`ASIPP | Dashboard ${role.toUpperCase()}`} />
             <div className="space-y-6 p-4">
                 {/* Cards */}
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+                {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
                     <div className="@container relative rounded-lg bg-cyan-500 p-4 text-white shadow">
                         <Bookmark className="absolute top-1/2 right-4 hidden h-25 w-25 -translate-y-1/2 text-slate-500 opacity-25 @xs:block" />
                         <h3 className="text-2xl font-bold">Usulan Penelitian</h3>
@@ -138,7 +137,6 @@ export default function DashboardReviewer() {
                     </div>
                 </div>
 
-                {/* Usulan Baru */}
                 <div className="rounded-lg border bg-white shadow">
                     <div className="flex items-center justify-between border-b p-3">
                         <h4 className="font-semibold">Usulan Baru</h4>
@@ -179,7 +177,7 @@ export default function DashboardReviewer() {
                                 </div>
                             ))}
                     </div>
-                </div>
+                </div> */}
 
                 {/* Grafik Section (tanpa chart) */}
                 <div className="rounded-lg border bg-white shadow">
